@@ -4,7 +4,7 @@ const db = require('../pgpool');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.send('SUGAR');
 });
 
 router.get('/sugar', function(req, res, next) {
