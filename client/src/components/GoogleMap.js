@@ -11,6 +11,7 @@ const mapStyle = {
     borderRadius: '5px'
 }
 
+console.log(process.env.REACT_APP_GOOGLE_API_KEY)
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
 
 const MapContainer = ({ address, google}) => {
