@@ -46,7 +46,9 @@ const StyledButtonRegister = styled.button`
 
 `
 
-const Login = ({ profile, setProfile, navigate }) => {
+const Login = ({ profile, setProfile }) => {
+
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

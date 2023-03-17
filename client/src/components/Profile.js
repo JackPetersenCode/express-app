@@ -113,8 +113,6 @@ const LogoutButton = styled.button`
 
 const Profile = ({ profile, setProfile }) => {
 
-    const navigate = useNavigate();
-
     const handleLogout = async() => {
         kudos.post('/api/users/logout')
             .then((respones) => {
@@ -139,7 +137,6 @@ const Profile = ({ profile, setProfile }) => {
         }
     }, [profile])
 
-    console.log(profile)
     return (
         <>
             { profile.email ? 
@@ -182,7 +179,7 @@ const Profile = ({ profile, setProfile }) => {
                 ))}
                 </div>
             </BusinessesBackground>
-            : <Login profile={profile} setProfile={setProfile} navigate={navigate} /> }
+            : <Login profile={profile} setProfile={setProfile} /> }
         </>
     )
 }
