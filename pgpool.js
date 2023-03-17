@@ -1,6 +1,6 @@
 const Pool = require('pg-pool');
 const url = require('url');
-require('dotenv').config();
+//require('dotenv').config();
 
 
 const config = {
