@@ -1,24 +1,15 @@
 const Pool = require('pg-pool');
-const url = require('url')
+const url = require('url');
+require('dotenv').config();
 
-//const params = url.parse(process.env.DATABASE_URL);
-//const auth = params.auth.split(':');
 
 const config = {
-  user: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD,
+  user: process.env.DB_USER,
   host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  database: process.env.DB_DATABASE
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT
 };
-/*
-const config = {
-    user: "petejackerson",
-    database: "nbastatistics",
-    password: "redsox45",
-    host: "localhost",
-    port: 5432
-}*/
 
 const pool = new Pool(config);
 module.exports = {
