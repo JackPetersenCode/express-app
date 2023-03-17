@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const db = require('../pgPool');
+const db = require('../pgpool');
 const passport = require('passport');
 const initializePassport = require('../config/passport');
 initializePassport(passport);

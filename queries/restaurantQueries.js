@@ -1,4 +1,4 @@
-const db = require("../pgPool");
+const db = require("../pgpool");
 
 const getAll = (request, response, next) => {
     db.query(`SELECT * FROM "restaurants" limit 10`, (error, results) => {

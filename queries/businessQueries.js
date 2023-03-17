@@ -1,4 +1,4 @@
-const db = require("../pgPool");
+const db = require("../pgpool");
 
 
 const getAll = (request, response, next) => {

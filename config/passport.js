@@ -1,7 +1,7 @@
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 //const { User } = require('../models');
-const db = require('../pgPool');
+const db = require('../pgpool');
 
 function initialize(passport) {
 
