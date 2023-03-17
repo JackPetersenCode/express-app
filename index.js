@@ -33,7 +33,7 @@ if (process.env.NODE_ENV === "production") {
     
 }
 console.log(typeof process.env.DB_PASSWORD)
-console.log(process.env.DB_USER)
+console.log(typeof process.env.DB_USER)
 console.log(process.env.DB_HOST)
 console.log(process.env.DB_DATABASE)
 console.log(process.env.DB_PASSWORD)
