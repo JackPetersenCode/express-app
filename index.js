@@ -28,12 +28,12 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static('public'));
     
 }
-console.log(typeof process.env.DB_PASSWORD)
-console.log(typeof process.env.DB_USER)
-console.log(process.env.DB_HOST)
-console.log(process.env.DB_DATABASE)
-console.log(process.env.DB_PASSWORD)
-console.log(process.env.DB_PORT)
+console.log(typeof process.env.PG_PASSWORD)
+console.log(typeof process.env.PG_USER)
+console.log(process.env.PG_HOST)
+console.log(process.env.PG_DATABASE)
+console.log(process.env.PG_PASSWORD)
+console.log(process.env.PG_PORT)
 
 app.use(session({
   secret: 'secret',
