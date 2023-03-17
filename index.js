@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var port = process.env.PORT || 3001;
 var cors = require('cors');
+require('dotenv').config();
 var cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
@@ -9,11 +10,6 @@ const passport = require('passport');
 const initializePassport = require('./config/passport');
 initializePassport(passport);
 
-
-
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
-}
 
 var app = express();
 
