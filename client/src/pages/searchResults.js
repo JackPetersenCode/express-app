@@ -82,7 +82,6 @@ const RatingContainerDiv = styled.div`
 const SearchResults = () => {
 
     const { input } = useParams();
-    console.log(input)
 /*
     useEffect(() => {
         const getMatches = async() => {
@@ -97,10 +96,7 @@ const SearchResults = () => {
 
     useEffect(() => {
         const getAll = async() => {
-            console.log(input)
             let results = await kudos.get(`/api/business/getAllLike/${input.toLowerCase()}`);
-            console.log(results.data)
-
             setData(results.data);
         }
         getAll();

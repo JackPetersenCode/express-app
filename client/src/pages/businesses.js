@@ -120,7 +120,6 @@ const Description = styled.div`
 const Businesses = () => {
 
     const { name } = useParams();
-    console.log(name)
 
     const [business, setBusiness] = useState({});
 
@@ -129,7 +128,6 @@ const Businesses = () => {
         const getBusiness = async() => {
             let results = await kudos.get(`/api/business/${name}`);
             setBusiness(results.data[0]);
-            console.log(results.data[0].address)
         }
         getBusiness();
     }, [name])

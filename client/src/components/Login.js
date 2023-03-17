@@ -64,9 +64,7 @@ const Login = ({ profile, setProfile, navigate }) => {
             setMessages(results.data)
             navigate('/Login');
         } else {
-            console.log('yayaya');
             //setLoginStatus(true);
-            console.log(results.data)
             setProfile(results.data)
             navigate('/');
         }                                                        

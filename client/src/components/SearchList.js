@@ -69,7 +69,6 @@ function SearchList({ inputText, setInputText, data, reviewsList, selectedBusine
     function handleList(name) {
         setSelectedBusiness(name);
         setInputText('');
-        console.log(name)
     }
 
 

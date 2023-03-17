@@ -57,7 +57,6 @@ const AddBusiness = ({ profile }) => {
 
     const navigate = useNavigate();
 
-    console.log(profile)
     const createBusiness = async() => {
 
         const formData = new FormData();
@@ -72,9 +71,7 @@ const AddBusiness = ({ profile }) => {
         kudos.post(url, formData, config)
             .then((response) => {
                 alert('Image Uploaded Successfully!');
-                console.log(images);
                 let databaseImages = images.map((image) => '/' + image.name)
-                console.log(databaseImages)
                 kudos.post(`/api/business`, { name: name,
                                                 description: description,
                                                 tags: tags,
@@ -83,7 +80,6 @@ const AddBusiness = ({ profile }) => {
                                                 email: profile.email
                                             })
                     .then((response) => {
-                        console.log(response)
                         console.log('Business created successfully')
                     })
                     .catch((error) => {
@@ -102,7 +98,6 @@ const AddBusiness = ({ profile }) => {
     const onInputChange = (e) => {
         e.preventDefault();
         setFile(e.target.files[0]);
-        console.log(e.target.files[0])
         //images.push(e.target.files[0]);
         setImages([...images, e.target.files[0]]);
     }

@@ -133,7 +133,6 @@ const Profile = ({ profile, setProfile }) => {
         const getBusinessesFromEmail = async() => {
             let results = await kudos.get(`/api/business/email/${profile.email}`);
             setOwnedBusinesses(results.data);
-            console.log(results.data)
         }
         if (profile.email) {
             getBusinessesFromEmail();

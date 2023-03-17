@@ -82,8 +82,6 @@ const ReviewsPage = ({ profile }) => {
     useEffect(() => {
         const getAll = async() => {
             let results = await kudos.get(`/api/business/searchAll`);
-            console.log(results.data)
-
             setAllBusinesses(results.data);
         }
         getAll()
@@ -103,8 +101,6 @@ const ReviewsPage = ({ profile }) => {
         }
         try {
             let results = await kudos.post(`/api/reviews`, {name: selectedBusiness, review: review, reviewer: reviewer});
-            console.log(results.data)
-            console.log('postage')
             if (results.data) {
                 alert('Review Posted!')
             }

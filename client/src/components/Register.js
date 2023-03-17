@@ -45,7 +45,6 @@ const Register = ({ profile, setProfile }) => {
     const [messages, setMessages] = useState([]);
 
     const register = async() => {
-        console.log(name);
         let results = await kudos.post(`/api/users/register`, {
                                                                 name: name,
                                                                 email: email,
@@ -53,14 +52,11 @@ const Register = ({ profile, setProfile }) => {
                                                                 password2: password2
                                                             })
 
-        console.log(results.data)
 
         if (results.data[0].message) {
-            console.log('whistle')
             setMessages(results.data);
             navigate('/Register')
         } else {
-            console.log('yoyo')
             navigate('/Login');
         }                                                        
     }

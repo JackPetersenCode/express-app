@@ -19,10 +19,8 @@ const Reviews = ({ name }) => {
     useEffect(() => {
 
         const getReviews = async() => {
-            console.log(name)
             let results = await kudos.get(`/api/reviews/${name}`);
             setReviews(results.data);
-            console.log(results.data)
         }
         getReviews();
     }, [name])

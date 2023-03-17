@@ -16,7 +16,6 @@ const Restaurants = () => {
         const getAllRestaurants = async() => {
             let results = await axios.get('/api/restaurants/getAll');
             let restaurants = results.data;
-            console.log(restaurants)
         }
         getAllRestaurants();
     }, [])

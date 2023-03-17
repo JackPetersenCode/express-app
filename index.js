@@ -14,7 +14,6 @@ initializePassport(passport);
 var app = express();
 
 if (process.env.NODE_ENV === "production") {
-    console.log('production?')
     // Set static folder
     // All the javascript and css files will be read and served from this folder
     app.use(express.static("client/build"));
@@ -24,16 +23,8 @@ if (process.env.NODE_ENV === "production") {
       res.sendFile(path.resolve(__dirname, "./client", "build", "index.html"));
     });
 } else {
-    console.log('here')
-    app.use(express.static('public'));
-    
+    app.use(express.static('public'));    
 }
-console.log(typeof process.env.PG_PASSWORD)
-console.log(typeof process.env.PG_USER)
-console.log(process.env.PG_HOST)
-console.log(process.env.PG_DATABASE)
-console.log(process.env.PG_PASSWORD)
-console.log(process.env.PG_PORT)
 
 app.use(session({
   secret: 'secret',

@@ -11,19 +11,16 @@ const mapStyle = {
     borderRadius: '5px'
 }
 
-console.log(process.env.REACT_APP_GOOGLE_API_KEY)
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
 
 const MapContainer = ({ address, google}) => {
 
-    console.log(address)
     const [latitude, setLatitude] = useState(0);
     const [longitude, setLongitude] = useState(0);
 
     Geocode.fromAddress(address).then(
         (response) => {
           const { lat, lng } = response.results[0].geometry.location;
-          console.log(lat, lng);
           setLatitude(lat);
           setLongitude(lng);
           
@@ -36,7 +33,6 @@ const MapContainer = ({ address, google}) => {
     const directionsService = new google.maps.DirectionsService();
     const [map, setMap] = useState(/** @type google.maps.Map */ (null));
 
-    console.log(map)
     return (
         <>
         {latitude === 0 && longitude === 0 ? '' :
