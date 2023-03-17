@@ -4,11 +4,11 @@ const url = require('url');
 
 
 const config = {
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_DATABASE,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT
+  user: 'ubuntu',
+  host: 'localhost',
+  database: 'karen',
+  password: 'redsox45',
+  port: 5432
 };
 
 const pool = new Pool(config);
