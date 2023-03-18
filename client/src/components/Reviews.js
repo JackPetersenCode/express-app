@@ -12,7 +12,7 @@ const ReviewerDiv = styled.div`
     padding: 10px;
 `
 
-const Reviews = ({ name }) => {
+const Reviews = ({ name, limitTwo }) => {
 
     const [reviews, setReviews] = useState([]);
 
@@ -20,7 +20,11 @@ const Reviews = ({ name }) => {
 
         const getReviews = async() => {
             let results = await kudos.get(`/api/reviews/${name}`);
-            setReviews(results.data);
+            if (limitTwo) {
+                setReviews(results.data.slice(-2))
+            } else {
+                setReviews(results.data);
+            }
         }
         getReviews();
     }, [name])

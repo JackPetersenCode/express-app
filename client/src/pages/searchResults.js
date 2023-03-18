@@ -26,6 +26,7 @@ const ResultsHeader = styled.h2`
     padding-left: max(50px, 5%);
     text-align: left;
     min-width: 400px;
+    color: rgb(182, 182, 182);
 `
 
 const SearchResultsImage = styled.img`
@@ -136,7 +137,7 @@ const SearchResults = () => {
                             </KudosDiv>
                         </RatingContainerDiv>
                         <ReviewsDiv>
-                            <Reviews name={element.name} />
+                            <Reviews name={element.name} limitTwo={true} />
                         </ReviewsDiv>
                         <Link to={`/Businesses/${element.name}`}>More</Link>
                     </TextContainerDiv>

@@ -17,12 +17,25 @@ const TextDiv = styled.div`
 
 const SearchBar = ({ inputText, setInputText, selectedBusiness, setSelectedBusiness, reviewsList }) => {
 
+    let navigate = useNavigate();
 
     let inputHandler = (e) => {
       //convert input text to lower case
       var lowerCase = e.target.value.toLowerCase();
       setInputText(lowerCase);
     };
+
+    let handleEnter = (e) => {
+      if (e.key === 'Enter') {
+        navigate(`/${inputText}`)
+      }
+    }
+
+    let handleEnterReviews = (e) => {
+      if (e.key === 'Enter') {
+        alert('Select a business from drop down menu.')
+      }
+    }
 
     return (
       <ContainerDiv>
@@ -38,6 +51,7 @@ const SearchBar = ({ inputText, setInputText, selectedBusiness, setSelectedBusin
             InputProps={{
                 endAdornment: <InputAdornment position="start"><Link to={`/${inputText}`}><SearchIcon /></Link></InputAdornment>,
             }}
+            onKeyDown={reviewsList ? handleEnterReviews : handleEnter}
           />
         </TextDiv>
       </ContainerDiv>
