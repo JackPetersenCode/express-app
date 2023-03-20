@@ -36,7 +36,6 @@ const StyledOption = styled.div`
  
 function SearchList({ inputText, setInputText, data, reviewsList, selectedBusiness, setSelectedBusiness }) {
     //create a new array by filtering the original array
-    
     function useOutsideAlerter(ref) {
         useEffect(() => {
             /**

@@ -14,7 +14,6 @@ const getAllLike = (request, response, next) => {
 
     let { input } = request.params;
     input = input.replace("'", '');
-    console.log(input)
     db.query(`SELECT * from "businesses" where '%${input}%' <~~ ANY(tags)`, (error, results) => {
         if (error) {
             console.log(error);
@@ -36,7 +35,6 @@ const getIndividualBusiness = (request, response, next) => {
 
 const getBusinessImages = (request, response, next) => {
     const { name } = request.params;
-    console.log(name)
     db.query(`SELECT images FROM "businesses"
                 WHERE name = $1`, [name], (error, results) => {
         if (error) {
@@ -48,7 +46,6 @@ const getBusinessImages = (request, response, next) => {
 
 const getByEmail = (request, response, next) => {
     const { email } = request.params;
-    console.log(email)
     db.query(`SELECT * FROM "businesses"
                 WHERE email = $1`, [email], (error, results) => {
         if (error) {

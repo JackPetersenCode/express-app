@@ -197,7 +197,7 @@ function Navbar() {
     useEffect(() => {
         const getAll = async() => {
             let results = await kudos.get(`/api/business/searchAll`);
-
+            console.log(results.data);
             setAllBusinesses(results.data);
         }
         getAll()

@@ -55,8 +55,6 @@ const AddBusiness = ({ profile }) => {
     const [images, setImages] = useState([]);
     const [errors, setErrors] = useState(false);
 
-    const navigate = useNavigate();
-
     const createBusiness = async() => {
 
         const formData = new FormData();
@@ -70,7 +68,6 @@ const AddBusiness = ({ profile }) => {
 
         kudos.post(url, formData, config)
             .then((response) => {
-                alert('Image Uploaded Successfully!');
                 let databaseImages = images.map((image) => '/' + image.name)
                 kudos.post(`/api/business`, { name: name,
                                                 description: description,
@@ -81,8 +78,10 @@ const AddBusiness = ({ profile }) => {
                                             })
                     .then((response) => {
                         console.log('Business created successfully')
+                        alert('Business Created Successfully! Use search bar to find your page.');
                     })
                     .catch((error) => {
+                        alert('Must include business name.')
                         console.log(error)
                     })
             })
