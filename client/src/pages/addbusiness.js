@@ -47,6 +47,7 @@ const ButtonDiv = styled.div`
 `
 const AddBusiness = ({ profile }) => {
 
+    const navigate = useNavigate();
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [tags, setTags] = useState([]);
@@ -83,6 +84,7 @@ const AddBusiness = ({ profile }) => {
                     .then((response) => {
                         console.log('Business created successfully')
                         alert('Business Created Successfully! Use search bar to find your page.');
+                        navigate('/');
                     })
                     .catch((error) => {
                         console.log(error)
