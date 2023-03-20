@@ -17,6 +17,7 @@ const KudosRating = ({ name }) => {
     useEffect(() => {
 
         const getCount = async() => {
+
             let results = await kudos.get(`/api/reviews/count/${name}`);
             setCount(results.data[0].count);
         }

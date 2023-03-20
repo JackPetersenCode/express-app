@@ -57,6 +57,10 @@ const AddBusiness = ({ profile }) => {
 
     const createBusiness = async() => {
 
+        if (!name) {
+            alert('Must include business name!')
+            return;
+        }
         const formData = new FormData();
         formData.append('photo', file);
         const config = {
@@ -81,7 +85,6 @@ const AddBusiness = ({ profile }) => {
                         alert('Business Created Successfully! Use search bar to find your page.');
                     })
                     .catch((error) => {
-                        alert('Must include business name.')
                         console.log(error)
                     })
             })
