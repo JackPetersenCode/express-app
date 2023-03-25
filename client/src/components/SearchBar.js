@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import TextField from "@mui/material/TextField";
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 import "../App.css";
 import styled from 'styled-components';
 import { Link, useNavigate } from "react-router-dom";
-
+import SearchList from './SearchList';
 
 const ContainerDiv = styled.div`
     position: relative;
@@ -14,10 +14,14 @@ const ContainerDiv = styled.div`
 const TextDiv = styled.div`
     padding-top: 20px;
 `
+const DropdownStyle = styled.div`
+    position: absolute;
+`
 
-const SearchBar = ({ inputText, setInputText, selectedBusiness, setSelectedBusiness, reviewsList }) => {
+const SearchBar = ({ allBusinesses, inputText, setInputText, selectedBusiness, setSelectedBusiness, reviewsList }) => {
 
     let navigate = useNavigate();
+    let refTwo = useRef(null);
 
     let inputHandler = (e) => {
       //convert input text to lower case
@@ -39,7 +43,7 @@ const SearchBar = ({ inputText, setInputText, selectedBusiness, setSelectedBusin
     }
 
     return (
-      <ContainerDiv>
+      <ContainerDiv ref={refTwo} >
         <TextDiv>
           <TextField 
             fullWidth
@@ -55,6 +59,12 @@ const SearchBar = ({ inputText, setInputText, selectedBusiness, setSelectedBusin
             onKeyDown={reviewsList ? handleEnterReviews : handleEnter}
           />
         </TextDiv>
+        <DropdownStyle>
+          {allBusinesses.length > 0 && inputText.length > 0 ?
+            <SearchList refTwo={refTwo} inputText={inputText} setInputText={setInputText} data={allBusinesses} /> 
+            : 
+          ''}
+          </DropdownStyle>
       </ContainerDiv>
     );
 }

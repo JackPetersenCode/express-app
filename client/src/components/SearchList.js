@@ -34,16 +34,20 @@ const StyledOption = styled.div`
 
 `
  
-function SearchList({ inputText, setInputText, data, reviewsList, selectedBusiness, setSelectedBusiness }) {
+function SearchList({ refTwo, inputText, setInputText, data, reviewsList, selectedBusiness, setSelectedBusiness }) {
     //create a new array by filtering the original array
-    function useOutsideAlerter(ref) {
+    function useOutsideAlerter(ref, ref2) {
         useEffect(() => {
             /**
              * Alert if clicked on outside of element
              */
             function handleClickOutside(event) {
-              if (ref.current && !ref.current.contains(event.target) && event.target.getAttribute('data-testid') !== 'SearchIcon') {
+              if (ref.current && !ref.current.contains(event.target) && !refTwo.current.contains(event.target)) {
+                  console.log(refTwo.current)
                   console.log(event.target.getAttribute('data-testid'))
+                  console.log(event.target)
+                  console.log(event)
+
                   setInputText('');
               }
             }
@@ -57,7 +61,7 @@ function SearchList({ inputText, setInputText, data, reviewsList, selectedBusine
     }
 
     const refOne = useRef(null);
-    useOutsideAlerter(refOne)
+    useOutsideAlerter(refOne, refTwo)
 
     const filteredData = data.filter((element) => {
         //if no input the return the original

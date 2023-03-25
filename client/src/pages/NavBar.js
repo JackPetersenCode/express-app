@@ -218,13 +218,7 @@ function Navbar() {
           </Link>
         </LogoNavLink>
         <SearchContainer>
-          <SearchBar inputText={inputText} setInputText={setInputText} />
-          <DropdownStyle>
-          {allBusinesses.length > 0 && inputText.length > 0 ?
-            <SearchList inputText={inputText} setInputText={setInputText} data={allBusinesses} onSearch={onSearch} /> 
-            : 
-          ''}
-          </DropdownStyle>
+          <SearchBar allBusinesses={allBusinesses} inputText={inputText} setInputText={setInputText} />
         </SearchContainer>
 
         <TopNavLinks>
