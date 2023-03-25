@@ -59,12 +59,21 @@ const SearchBar = ({ allBusinesses, inputText, setInputText, selectedBusiness, s
             onKeyDown={reviewsList ? handleEnterReviews : handleEnter}
           />
         </TextDiv>
+        {reviewsList ?
+        <DropdownStyle>
+          {allBusinesses.length > 0 && inputText.length > 0 ?
+            <SearchList refTwo={refTwo} inputText={inputText} setInputText={setInputText} data={allBusinesses} reviewsList={true} selectedBusiness={selectedBusiness} setSelectedBusiness={setSelectedBusiness} /> 
+            : 
+          ''}
+        </DropdownStyle>
+        :
         <DropdownStyle>
           {allBusinesses.length > 0 && inputText.length > 0 ?
             <SearchList refTwo={refTwo} inputText={inputText} setInputText={setInputText} data={allBusinesses} /> 
             : 
           ''}
-          </DropdownStyle>
+        </DropdownStyle>
+        }
       </ContainerDiv>
     );
 }

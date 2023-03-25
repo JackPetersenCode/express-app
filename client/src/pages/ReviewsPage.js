@@ -116,12 +116,7 @@ const ReviewsPage = ({ profile }) => {
                 <StyledHeader>Find a business to review</StyledHeader>
                 <br></br>
                 <SearchBarContainer>
-                    <SearchBar inputText={inputText} setInputText={setInputText} reviewsList={true} />
-                    {allBusinesses.length > 0 && inputText.length > 0 ?
-                        <SearchList inputText={inputText} setInputText={setInputText} data={allBusinesses} onSearch={onSearch} reviewsList={true} selectedBusiness={selectedBusiness} setSelectedBusiness={setSelectedBusiness} /> 
-                    : 
-                        ''
-                    }
+                    <SearchBar allBusinesses={allBusinesses} inputText={inputText} setInputText={setInputText} selectedBusiness={selectedBusiness} setSelectedBusiness={setSelectedBusiness} reviewsList={true} />
                 </SearchBarContainer>
                 <FlowerDiv>
                     <Flower src={'./flower.png'}/>
