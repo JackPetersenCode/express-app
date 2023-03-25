@@ -27,6 +27,7 @@ const SearchBar = ({ inputText, setInputText, selectedBusiness, setSelectedBusin
 
     let handleEnter = (e) => {
       if (e.key === 'Enter') {
+        console.log(inputText)
         navigate(`/${inputText}`)
       }
     }

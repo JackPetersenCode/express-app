@@ -42,8 +42,9 @@ function SearchList({ inputText, setInputText, data, reviewsList, selectedBusine
              * Alert if clicked on outside of element
              */
             function handleClickOutside(event) {
-              if (ref.current && !ref.current.contains(event.target)) {
-                    setInputText('');
+              if (ref.current && !ref.current.contains(event.target) && event.target.getAttribute('data-testid') !== 'SearchIcon') {
+                  console.log(event.target.getAttribute('data-testid'))
+                  setInputText('');
               }
             }
             // Bind the event listener
