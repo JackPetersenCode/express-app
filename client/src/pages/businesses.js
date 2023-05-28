@@ -13,7 +13,7 @@ import Footer from "../components/Footer";
 const BusinessesBackground = styled.div`
     background-image: linear-gradient(180deg, black, white);
     width: 100%;
-    min-height: 100vh;
+    min-height: 1000px;
 `
 
 const BusinessImage = styled.img`
@@ -35,13 +35,14 @@ const ImageDiv = styled.div`
 `
 const BusinessName = styled.div`
     color: white;
-    font-size: 8vh;
+    font-size: xxx-large;
     font-weight: 700;
     text-shadow: 0 0 0.1em black, 0 0 0.1em black,
     0 0 0.1em black;
     white-space: nowrap;
     @media screen and (max-width: 768px) {
-        font-size: 5vh;
+        font-size: xx-large;
+        white-space: normal;
     }
 `
 const BusinessDescription = styled.div`
@@ -61,11 +62,11 @@ const BusinessNameWrapper = styled.div`
     position: absolute;
     left: 0;
     right: 0;
-    top: 37%;
+    top: 35%;
     text-align: center;
     z-index: 10;
     @media screen and (max-width: 768px) {
-        top: 45%;
+        top: 42%;
     }
 `
 const RatingContainerDiv = styled.div`
@@ -83,10 +84,11 @@ const FlowerImage = styled.img`
 
 const KudosDiv = styled.div`
     font-size: x-large;
-    text-shadow: 0 0 10px black, 0 0 10px black,
-    0 0 10px black;
     padding: 10px;
     color: white;
+    @media screen and (max-width: 768px) {
+        font-size: large;
+    }
 `
 const BottomPageWrapper = styled.div`
     padding: 20px;
@@ -104,10 +106,11 @@ const MapWrap = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
+    min-height: 100vh;
 `
 const BelowMapDiv = styled.div`
-    margin-top: 520px;
-    margin-bottom: 20px;
+    margin-top: 13px;
+    margin-bottom: 10px;
     @media screen and (max-width: 768px) {
         margin-left: 5%;
     }
@@ -135,7 +138,9 @@ const AddressDiv = styled.div`
     font-weight: 700;
 `
 const FooterDiv = styled.div`
-    width: 100%;   
+    width: 100%; 
+    
+
 `
 
 
@@ -197,7 +202,7 @@ const Businesses = () => {
                             <FlowerImage src={'/newLogo.png'}/>
                         </FlowerDiv>
                         <KudosDiv>
-                            <KudosRating name={business.name} />
+                            <KudosRating name={business.name} shadow={true} />
                         </KudosDiv>
                     </RatingContainerDiv>
                 </BusinessNameWrapper>
@@ -216,13 +221,11 @@ const Businesses = () => {
                     </ReviewsWrapper>
                 </BottomPageWrapper>
                 <MapWrap>
-
-                    <GoogleMap address={business.address} />
-
                     <BelowMapDiv>
                         <AddressDiv>Business address:</AddressDiv>
                         {business.address}
                     </BelowMapDiv>
+                    <GoogleMap address={business.address} />
                 </MapWrap>
             </BottomDiv>
         </BusinessesBackground>

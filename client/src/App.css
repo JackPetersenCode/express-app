@@ -73,3 +73,13 @@ ul li {
 .profile-icon {
   color: black;
 }
+
+.reviews-shadow {
+  text-shadow: 0 0 5px black, 0 0 5px black,
+  0 0 5px black, 0 0 5px black;
+  white-space: nowrap;
+}
+
+.no-shadow {
+  text-shadow: none;
+}

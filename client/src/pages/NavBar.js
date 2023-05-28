@@ -29,6 +29,7 @@ const NavContainer = styled.nav`
     align-items: center;
     justify-content: space-between;
     padding: 20px;
+    padding-bottom: 0px;
     @media screen and (max-width: 768px) {
       padding-top: 10px;
       padding-bottom: 10px;
@@ -240,7 +241,7 @@ const BurgerLinks = styled.div`
   position: absolute;
   right: 0px;
   left: 0px;
-  top: 65px;
+  top: 60px;
   color: black;
   background-color: white;
   z-index: 20;
@@ -383,6 +384,7 @@ function Navbar() {
                 </ProfileText>
               </Link>
             </TopNavLinks>
+            <Line></Line>
 
           </BurgerLinks>
         </div>

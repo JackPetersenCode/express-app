@@ -5,17 +5,21 @@ import kudos from "../apis/kudos.js";
 const StyledRating = styled.span`
     margin-left: 40px;
     color: rgb(47, 255, 0);
+    text-shadow: 0 0 5px black, 0 0 5px black,
+    0 0 5px black;
     `
 const KudosFlex = styled.div`
     display: flex;
     align-items: center;
 
-    `
+`
 const ReviewsDiv = styled.div`
     white-space: nowrap;
 `
 
-const KudosRating = ({ name }) => {
+
+
+const KudosRating = ({ name, shadow }) => {
 
     const [count, setCount] = useState(0);
     const [rating, setRating] = useState('');
@@ -48,9 +52,9 @@ const KudosRating = ({ name }) => {
 
     return (
         <KudosFlex>
-          <ReviewsDiv data-testid={"review-count"}>
+          <div className={shadow ? "reviews-shadow" : "no-shadow"} data-testid={"review-count"}>
               {`${count} reviews`}
-          </ReviewsDiv>
+          </div>
           <StyledRating>
               {rating}
           </StyledRating>

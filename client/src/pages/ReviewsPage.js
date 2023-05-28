@@ -50,7 +50,8 @@ const StyledInput = styled.textarea`
 `
 const ReviewsDiv = styled.div`
     margin-top: 20px;
-`
+    text-align: center;
+    `
 const FlowerDiv = styled.div`
 
     margin-top: 20px;

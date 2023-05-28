@@ -39,12 +39,13 @@ const TextDiv = styled.div`
         0 0 0.2em black; 
 `
 const SlideshowContainer = styled.div`
-
+    
 `
 const FooterDiv = styled.div`
-    position: fixed;
+    position: absolute;
     bottom: 0;
     width: 100%;  
+    
 `
 
 const Slideshow = () => {

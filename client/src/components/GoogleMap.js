@@ -4,17 +4,20 @@ import Geocode from "react-geocode";
 import { DirectionsService, DirectionsRenderer } from '@react-google-maps/api';
 import styled from 'styled-components';
 import { useMediaQuery } from 'react-responsive';
-
+import Footer from './Footer';
 
 const mapStyle = {
   width: '100%',
-  height: '75%',
+  height: '500px',
 }
 
 const Width100 = styled.div`
-  padding-top: 20px;
 `
-
+const FooterDiv = styled.div`
+    width: 100%;   
+    position: absolute;
+    
+`
 
 
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
@@ -24,6 +27,7 @@ const MapContainer = ({ address, google}) => {
     const mapContainerStyle = {
       width: useMediaQuery({ maxWidth: 768 }) ? '90%' : 'calc(50% - 40px)',
       marginLeft: useMediaQuery({ maxWidth: 768 }) ? '5%' : '0%',
+      
     }
 
     const [latitude, setLatitude] = useState(0);
@@ -69,6 +73,7 @@ const MapContainer = ({ address, google}) => {
             <DirectionsService options={{  origin: 'boston', destination: 'new york', travelMode: 'DRIVING' }} />
           </Map>
         }
+
         </Width100>
     )
 }
