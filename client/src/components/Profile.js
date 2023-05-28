@@ -7,34 +7,68 @@ import KudosRating from "./KudosRating";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Navigate, useNavigate } from "react-router-dom";
+import Footer from "./Footer";
 
+
+const BusinessesBackground = styled.div`
+    background-image: linear-gradient(180deg, black, white);
+    width: 100%;
+    min-height: 100vh;
+`
+
+
+const ProfileInfo = styled.div`
+    font-size: xx-large;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.8),
+    0 0 10px rgba(0, 0, 0, 0.8);
+`
+const YourBusiness = styled.div`
+    font-size: x-large;
+    color: white;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 0, 0, 0.5),
+    0 0 10px rgba(0, 0, 0, 0.5);
+`
+const LogoutButton = styled.button`
+    width: 100px;
+    margin-top: 20px;
+    color: white;
+    background-color: rgb(23, 23, 23);
+    padding: 10px;
+    border-radius: 5px;
+    border-width: 5px;
+    border-color: gray;
+`
 
 const TextContainerDiv = styled.div`
     text-align: left;
     padding-left: 20px;
+    width: 100%;
+    @media screen and (max-width: 768px) {
+        padding-left: 0px;
+    }
 `
 
 const ReviewsDiv = styled.div`
     font-size: medium;
-    max-width: 300px;
 `
 
 const NameDiv = styled.div`
-    font-size: x-large;
+    font-size: xx-large;
     font-weight: 500;
     padding: 10px;
     `
 
 const ResultsHeader = styled.h2`
-    padding-left: max(50px, 5%);
     text-align: left;
-    min-width: 400px;
+    color: rgb(182, 182, 182);
 `
 
 const SearchResultsImage = styled.img`
-    display: grid;
-    place-items: left;
-    max-width: 350px;
+    max-width: 100%;
     max-height: 100%;
     border-radius: 5px;
 `
@@ -57,58 +91,34 @@ const KudosDiv = styled.div`
 `
 
 const SearchResultsDiv = styled.div`
-    display: grid;
-    grid-template-columns: 400px minmax(400px, 1fr);
-    grid-template-rows: auto;
-    max-width: fit-content;
+    display: flex;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 0, 0, 0.2),
         0 0 10px rgba(0, 0, 0, 0.2);
     padding: 25px;
-    margin-left: 50px;
     background-color: white;
     border-radius: 5px;
     margin-bottom: 25px;
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+    }
 `
 
-const BusinessesBackground = styled.div`
+const SearchResultsBackground = styled.div`
     background-image: linear-gradient(180deg, black, white);
-    width: 100%;
 `
 
 const RatingContainerDiv = styled.div`
     display: flex;
-    alignItems: center;
-    flexWrap: wrap;
-    max-height: 50px;
 `
-const ProfileInfo = styled.div`
-    margin-bottom: 50px;
-    margin-left: 50px;
-    margin-top: 20px;
-    font-size: xx-large;
-    color: white;
-    font-weight: 700;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.8),
-    0 0 10px rgba(0, 0, 0, 0.8);
+const ImageContainer = styled.div`
+    width: 100%;
 `
-const YourBusiness = styled.div`
-    margin-left: 50px;
-    font-size: x-large;
-    color: white;
-    margin-bottom: 20px;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 0, 0, 0.5),
-    0 0 10px rgba(0, 0, 0, 0.5);
+const SearchResultsContainer = styled.div`
+    margin-left: 5%;
+    margin-right: 5%;
 `
-const LogoutButton = styled.button`
-    margin-left: 50px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    color: white;
-    background-color: rgb(23, 23, 23);
-    padding: 10px;
-    border-radius: 5px;
-    border-width: 5px;
-    border-color: gray;
+const FooterDiv = styled.div`
+    width: 100%;   
 `
 
 const Profile = ({ profile, setProfile }) => {
@@ -140,45 +150,54 @@ const Profile = ({ profile, setProfile }) => {
     return (
         <>
             { profile.email ? 
+            <>
             <BusinessesBackground>
                 <Navbar />
+                <SearchResultsContainer>
                     <LogoutButton onClick={handleLogout}>
                         Log Out
                     </LogoutButton>
-                <ProfileInfo>
-                    {'Welcome Back, ' + profile.name + '!'}
-                </ProfileInfo>
-                <YourBusiness>
-                    Your Businesses:
-                </YourBusiness>
-                <div>
-                {ownedBusinesses.map((element, index) => (
-                <SearchResultsDiv key={index}>
-                    {element.images ?
-                    <SearchResultsImage src={element.images[0]}/>
-                    :
-                    'No Images'}
-                    <TextContainerDiv>
-                        <NameDiv>
-                            {element.name}
-                        </NameDiv>
-                        <RatingContainerDiv>
-                            <FlowerDiv>
-                                <FlowerImage src={'./flower.png'}/>
-                            </FlowerDiv>
-                            <KudosDiv>
-                                <KudosRating name={element.name} />
-                            </KudosDiv>
-                        </RatingContainerDiv>
-                        <ReviewsDiv>
-                            <Reviews name={element.name} />
-                        </ReviewsDiv>
-                        <Link to={`/Businesses/${element.name}`}>More</Link>
-                    </TextContainerDiv>
-                </SearchResultsDiv>
-                ))}
-                </div>
+                    <ProfileInfo>
+                        {'Welcome Back, ' + profile.name + '!'}
+                    </ProfileInfo>
+                    <YourBusiness>
+                        Your Businesses:
+                    </YourBusiness>
+
+                    {ownedBusinesses.map((element, index) => (
+                    <SearchResultsDiv key={index}>
+                        {element.images ?
+                        <ImageContainer>
+                            <SearchResultsImage src={element.images[0]}/>
+                        </ImageContainer>
+
+                        :
+                        'No Images'}
+                        <TextContainerDiv>
+                            <NameDiv>
+                                {element.name}
+                            </NameDiv>
+                            <RatingContainerDiv>
+                                <FlowerDiv>
+                                    <FlowerImage src={'./flower.png'}/>
+                                </FlowerDiv>
+                                <KudosDiv>
+                                    <KudosRating name={element.name} />
+                                </KudosDiv>
+                            </RatingContainerDiv>
+                            <ReviewsDiv>
+                                <Reviews name={element.name} />
+                            </ReviewsDiv>
+                            <Link to={`/Businesses/${element.name}`}>More</Link>
+                        </TextContainerDiv>
+                    </SearchResultsDiv>
+                    ))}
+                </SearchResultsContainer>
             </BusinessesBackground>
+            <FooterDiv>
+                <Footer styleProps={true} />
+            </FooterDiv>
+            </>
             : <Login profile={profile} setProfile={setProfile} /> }
         </>
     )

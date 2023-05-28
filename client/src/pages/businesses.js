@@ -7,10 +7,13 @@ import kudos from "../apis/kudos.js";
 import KudosRating from "../components/KudosRating";
 import GoogleMap from "../components/GoogleMap";
 import { getImageSize } from 'react-image-size';
+import Footer from "../components/Footer";
 
 
 const BusinessesBackground = styled.div`
     background-image: linear-gradient(180deg, black, white);
+    width: 100%;
+    min-height: 100vh;
 `
 
 const BusinessImage = styled.img`
@@ -32,20 +35,23 @@ const ImageDiv = styled.div`
 `
 const BusinessName = styled.div`
     color: white;
-    font-size: 7vh;
+    font-size: 8vh;
     font-weight: 700;
     text-shadow: 0 0 0.1em black, 0 0 0.1em black,
     0 0 0.1em black;
     white-space: nowrap;
+    @media screen and (max-width: 768px) {
+        font-size: 5vh;
+    }
 `
 const BusinessDescription = styled.div`
-    
     box-shadow: 0 0 10px rgba(48, 48, 48), 0 0 10px rgba(48, 48, 48),
     0 0 10px rgba(48, 48, 48);
     border-radius: 5px;
     background-color: white;
     margin-bottom: 20px;
-    `
+`
+
 const WrapperDiv = styled.div`
     
 `
@@ -101,6 +107,7 @@ const MapWrap = styled.div`
 `
 const BelowMapDiv = styled.div`
     margin-top: 520px;
+    margin-bottom: 20px;
     @media screen and (max-width: 768px) {
         margin-left: 5%;
     }
@@ -127,6 +134,10 @@ const AddressDiv = styled.div`
     font-size: large;
     font-weight: 700;
 `
+const FooterDiv = styled.div`
+    width: 100%;   
+`
+
 
 const Businesses = () => {
 
@@ -166,6 +177,7 @@ const Businesses = () => {
     return (
         <>
         {business.name ?
+        <>
         <BusinessesBackground>
             <NavBar />
             <WrapperDiv>
@@ -182,7 +194,7 @@ const Businesses = () => {
                     </BusinessName>
                     <RatingContainerDiv>
                         <FlowerDiv>
-                            <FlowerImage src={'/flower2.png'}/>
+                            <FlowerImage src={'/newLogo.png'}/>
                         </FlowerDiv>
                         <KudosDiv>
                             <KudosRating name={business.name} />
@@ -214,6 +226,10 @@ const Businesses = () => {
                 </MapWrap>
             </BottomDiv>
         </BusinessesBackground>
+        <FooterDiv>
+            <Footer styleProps={true} />
+        </FooterDiv>
+        </>
         : ''}
         </>
     )

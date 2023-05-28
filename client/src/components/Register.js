@@ -4,28 +4,32 @@ import { Form, Link } from "react-router-dom";
 import { Navigate, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Navbar from "../pages/NavBar";
+import Footer from "./Footer.js";
 
 const BusinessesBackground = styled.div`
     background-image: linear-gradient(180deg, black, white);
     width: 100%;
+    min-height: 100vh;
 `
 const FormDiv = styled.div`
     text-align: center;
-    margin: 20px;
+    margin-bottom: 20px;
 `
 const Flower = styled.img`
-    width: 75px;
-    height: 75px;
+    width: 29px;
+    height: 31px;
 `
 const StyledInput = styled.input`
-    width: 400px;
+    width: 80vw;
+    height: auto;
+    max-width: 500px;
     padding: 15px;
     font-size: large;
     border-radius: 10px;
     border-width: 5px;
+
 `
 const StyledButton = styled.button`
-    width: 440px;
     padding: 15px;
     font-size: large;
     border-radius: 10px;
@@ -33,6 +37,14 @@ const StyledButton = styled.button`
     color: white;
     border-color: rgb(48, 48, 48);
     background-color: rgb(48, 48, 48);
+`
+const FlowerDiv = styled.div`
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+`
+const FooterDiv = styled.div`
+    width: 100%;
 `
 
 const Register = ({ profile, setProfile }) => {
@@ -62,12 +74,13 @@ const Register = ({ profile, setProfile }) => {
     }
 
     return (
+        <>
         <BusinessesBackground>
             <Navbar />
             <div>
-                <FormDiv>
-                    <Flower src="/flower2.png" />
-                </FormDiv>
+                <FlowerDiv>
+                    <Flower src="/newLogo.png" />
+                </FlowerDiv>
                 <FormDiv>
                     <StyledInput value={name} onChange={(e) => setName(e.target.value)} type="name" placeholder="username" id="name" name="name" />
                 </FormDiv>
@@ -95,6 +108,10 @@ const Register = ({ profile, setProfile }) => {
             ))}
             </div>
         </BusinessesBackground>
+        <FooterDiv>
+            <Footer styleProps={true} />
+        </FooterDiv>
+        </>
     )
 }
 

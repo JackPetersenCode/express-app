@@ -52,8 +52,12 @@ const TopNavLinks = styled.div`
 `
 
 const LogoNavLink = styled.div`
-    text-align: center;
+    display: flex;
+    align-items: center;
+    text-shadow: 0 0 5px rgba(255, 255, 255), 0 0 5px rgba(255, 255, 255),
+    0 0 5px rgba(255, 255, 255), 0 0 5px rgba(255, 255, 255);
     padding: 10px;
+
     @media screen and (max-width: 768px) {
       width: 100%;
     }
@@ -135,8 +139,9 @@ const DropdownStyle = styled.div`
 `
 const SearchContainer = styled.div`
     width: 100%;
-    max-width: 500px;
-
+    @media screen and (min-width: 769px) {
+      max-width: 500px;
+    }
 `
 
 const StyledBurger = styled(LunchDiningIcon)({
@@ -196,10 +201,13 @@ const LinkFlex = styled.div`
 const LogoAndBarFlex = styled.div`
   display: flex;
   width: 100%;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `
 const PhoneNavFlex = styled.div`
   display: flex;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 `
 const PhoneLink = styled.div`
   display: flex;
@@ -213,6 +221,7 @@ const PhoneLogoFlex = styled.div`
 `
 const HamburgerContainer = styled.div`
   width: 100%;
+  color: white;
   text-align: right;
 `
 const HiddenDiv = styled.div`
@@ -231,7 +240,7 @@ const BurgerLinks = styled.div`
   position: absolute;
   right: 0px;
   left: 0px;
-  top: 75px;
+  top: 65px;
   color: black;
   background-color: white;
   z-index: 20;
@@ -257,6 +266,17 @@ const Line = styled.div`
   width: 100%;
   height: 2px;
   background-color: rgb(238,238,238);
+`
+const InnerBurger = styled.div`
+  display: flex;
+  align-items: center;
+`
+const KudosLogo = styled.div`
+  font-size: x-large;
+  margin-right: 7px;
+  margin-bottom: 2px;
+  font-weight: 700;
+
 `
 
 let restaurantLink = 'restaurant';
@@ -284,17 +304,31 @@ function Navbar() {
     return (
     <BigNavWrap>
       <NavContainer>
-        <MediaQuery maxWidth={768}>
-        <HiddenDiv>
 
-        </HiddenDiv>
-        </MediaQuery>
         <LogoAndBarFlex>
-          <LogoNavLink>
-            <Link to='/'>
-                <img src="/kudos2.png" alt="Home"/>
+          <InnerBurger>
+            <MediaQuery maxWidth={768}>
+              <HiddenDiv>
+      
+              </HiddenDiv>
+            </MediaQuery>
+            <Link to='/' className="dropLink">
+            <LogoNavLink>              
+              <KudosLogo>
+                kudos
+              </KudosLogo>
+              <img src="/newLogo.png" alt="Home"/>
+            </LogoNavLink>
             </Link>
-          </LogoNavLink>
+
+
+            <MediaQuery maxWidth={768}>
+            <HamburgerContainer>
+              <GiHamburgerMenu onClick={() => setIsExpanded(!isExpanded)} size={40} />
+            </HamburgerContainer>
+            </MediaQuery>
+
+          </InnerBurger>
           <SearchContainer>
             <SearchBar allBusinesses={allBusinesses} inputText={inputText} setInputText={setInputText} />
           </SearchContainer>
@@ -315,9 +349,6 @@ function Navbar() {
         </LinkFlex>
 
         <MediaQuery maxWidth={768} >
-        <HamburgerContainer>
-            <GiHamburgerMenu onClick={() => setIsExpanded(!isExpanded)} size={40} />
-        </HamburgerContainer>
         <div className={isExpanded ? "expanded" : "notExpanded"}>
           <BurgerLinks>
 

@@ -4,7 +4,7 @@ import kudos from "../apis/kudos.js";
 
 const StyledRating = styled.span`
     margin-left: 40px;
-    color: rgba(85,163,1);
+    color: rgb(47, 255, 0);
     `
 const KudosFlex = styled.div`
     display: flex;

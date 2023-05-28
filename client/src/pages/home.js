@@ -11,6 +11,7 @@ import FadeButton from "../components/FadeButton";
 import kudos from "../apis/kudos";
 import Slideshow from "../components/Slideshow";
 import MediaQuery from 'react-responsive';
+import Footer from "../components/Footer";
 
 
 
@@ -60,6 +61,8 @@ const Home = () => {
           <Navbar />
         </MediaQuery>
         <Slideshow />
+        
+
       </>
     )
 }

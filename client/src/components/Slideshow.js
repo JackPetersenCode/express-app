@@ -13,7 +13,7 @@ import '../App.css'
 import FadeButton from "./FadeButton";
 import kudos from "../apis/kudos";
 import MediaQuery from 'react-responsive';
-
+import Footer from "./Footer";
 
 const images = [
     {url: image1, text: 'Make those neighbors jealous', name: 'Landscapers'},
@@ -41,6 +41,11 @@ const TextDiv = styled.div`
 const SlideshowContainer = styled.div`
 
 `
+const FooterDiv = styled.div`
+    position: fixed;
+    bottom: 0;
+    width: 100%;  
+`
 
 const Slideshow = () => {
     
@@ -62,6 +67,9 @@ const Slideshow = () => {
                 <Navbar />
                 <TextDiv>{fadeImage.text}</TextDiv>
                 <FadeButton name={fadeImage.name} />
+                <FooterDiv>
+                    <Footer />
+                </FooterDiv>
               </div>
             </div>
           ))}
@@ -82,8 +90,12 @@ const Slideshow = () => {
                             backgroundPosition: 'center',
                             backgroundSize: 'cover'
                             }}>
+                
                 <TextDiv>{fadeImage.text}</TextDiv>
                 <FadeButton name={fadeImage.name} />
+                <FooterDiv>
+                    <Footer />
+                </FooterDiv>
               </div>
             </div>
           ))}

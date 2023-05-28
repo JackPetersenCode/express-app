@@ -5,6 +5,7 @@ import Reviews from "../components/Reviews";
 import { useParams, Link } from 'react-router-dom';
 import KudosRating from "../components/KudosRating";
 import kudos from "../apis/kudos";
+import Footer from "../components/Footer";
 
 const TextContainerDiv = styled.div`
     text-align: left;
@@ -68,6 +69,8 @@ const SearchResultsDiv = styled.div`
 
 const SearchResultsBackground = styled.div`
     background-image: linear-gradient(180deg, black, white);
+    width: 100%;
+    min-height: 100vh;
 `
 
 const RatingContainerDiv = styled.div`
@@ -79,6 +82,9 @@ const ImageContainer = styled.div`
 const SearchResultsContainer = styled.div`
     margin-left: 5%;
     margin-right: 5%;
+`
+const FooterDiv = styled.div`
+    width: 100%;   
 `
 
 const SearchResults = () => {
@@ -122,6 +128,7 @@ const SearchResults = () => {
     console.log(filteredData)
 */
     return (
+        <>
         <SearchResultsBackground>
             <Navbar />
             <SearchResultsContainer>
@@ -156,6 +163,10 @@ const SearchResults = () => {
                 ))}
             </SearchResultsContainer>
         </SearchResultsBackground>
+        <FooterDiv>
+            <Footer styleProps={true} />
+        </FooterDiv>
+        </>
     )
 }
 

@@ -5,37 +5,39 @@ import SearchBar from "../components/SearchBar";
 import SearchList from "../components/SearchList";
 import kudos from "../apis/kudos";
 import Chat from "../components/ChatAi";
+import Footer from "../components/Footer";
 
 const Flower = styled.img`
-    width: 75px;
-    height: 75px;
+    width: 40px;
+    height: 40px;
+    
 `
 
 const BusinessesBackground = styled.div`
     background-image: linear-gradient(180deg, black, white);
     width: 100%;
+    min-height: 100vh;
+
 `
 const CenterDiv = styled.div`
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `
-const StyledHeader = styled.h2`
-    display: grid;
-    place-items: center;
+const StyledHeader = styled.div`
+    text-align: center;
     font-size: x-large;
     color: white;
-    margin: 20px;
+    padding: 10px;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 0, 0, 0.5),
     0 0 10px rgba(0, 0, 0, 0.5);
 `
 const SearchBarContainer = styled.div`
-    display: grid;
-    place-items: center;
-    min-width: 400px;
+    
 `
 const StyledInput = styled.textarea`
-    width: 500px;
+    width: 80vw;
+    max-width: 500px;
     height: 200px;
     padding: 12px 20px;
     box-sizing: border-box;
@@ -43,19 +45,15 @@ const StyledInput = styled.textarea`
     border-radius: 4px;
     background-color: #f8f8f8;
     font-size: 16px;
-    resize: none;
     box-shadow: 0 0 10px rgba(48, 48, 48), 0 0 10px rgba(48, 48, 48),
     0 0 10px rgba(48, 48, 48);
 `
 const ReviewsDiv = styled.div`
-    display: grid;
-    place-items: center;
-    margin-bottom: 50px;
+    margin-top: 20px;
 `
 const FlowerDiv = styled.div`
-    display: grid;
-    place-items: center;
-    margin-top: 50px;
+
+    margin-top: 20px;
 `
 const ButtonDiv = styled.div`
     text-align: center;
@@ -70,7 +68,20 @@ const ReviewsButton = styled.button`
     border: none;
     color: white;
 `
-
+const HeaderDiv = styled.div`
+    text-align: center;
+    font-size: x-large;
+    padding: 10px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5),
+    0 0 10px rgba(255, 255, 255, 0.5);
+`
+const FooterDiv = styled.div`
+    width: 100%;
+    height: 
+`
+const BigWrap = styled.div`
+    min-height: 100vh;
+`
 
 const ReviewsPage = ({ profile }) => {
     
@@ -111,36 +122,37 @@ const ReviewsPage = ({ profile }) => {
     }
 
     return (
+        <>
         <BusinessesBackground>
             <Navbar />
             <CenterDiv>
+                <FlowerDiv>
+                    <Flower src={'./newLogo.png'}/>
+                </FlowerDiv>
                 <StyledHeader>Find a business to review</StyledHeader>
-                <br></br>
                 <SearchBarContainer>
                     <SearchBar allBusinesses={allBusinesses} inputText={inputText} setInputText={setInputText} selectedBusiness={selectedBusiness} setSelectedBusiness={setSelectedBusiness} reviewsList={true} />
                 </SearchBarContainer>
-                <FlowerDiv>
-                    <Flower src={'./flower.png'}/>
-                </FlowerDiv>
+                { selectedBusiness.length > 0 ?
                 <ReviewsDiv>
-                    { selectedBusiness.length > 0 ?
-                    <div>
-                        <h2>{selectedBusiness}</h2>
-                        <StyledInput value={review} onChange={(e) => {
-                            e.target.setAttribute('size', e.target.value.length);
-                            setReview(e.target.value)}}
-                                type="text" placeholder="Write your review..." id="review" name="review" ></StyledInput>
-                        <ButtonDiv>
-                            <ReviewsButton onClick={postReview}>Submit Review</ReviewsButton>
-                        </ButtonDiv>
-                    </div>
-                    :
-                    ''
-                    }
+                    <HeaderDiv>{selectedBusiness}</HeaderDiv>
+                    <StyledInput value={review} onChange={(e) => {
+                        e.target.setAttribute('size', e.target.value.length);
+                        setReview(e.target.value)}}
+                            type="text" placeholder="Write your review..." id="review" name="review" ></StyledInput>
+                    <ButtonDiv>
+                        <ReviewsButton onClick={postReview}>Submit Review</ReviewsButton>
+                    </ButtonDiv>
                 </ReviewsDiv>
+                :
+                ''
+                }
             </CenterDiv>
-            <Chat />
         </BusinessesBackground>
+        <FooterDiv>
+            <Footer styleProps={true} />
+        </FooterDiv>
+        </>
     )
 }
 

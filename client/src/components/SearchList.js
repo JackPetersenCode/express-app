@@ -82,7 +82,7 @@ function SearchList({ refTwo, inputText, setInputText, data, reviewsList, select
 
       <DropdownStyle>
         {filteredData.map((item, index) => (
-        <Link key={index} to={`/${item.name}`} style={{color: 'red', textDecoration: 'none'}}><DropdownRowStyle>{item.name}</DropdownRowStyle></Link>
+        <Link key={index} to={`/${item.name}`} className='dropLink'><DropdownRowStyle>{item.name}</DropdownRowStyle></Link>
         ))}
       </DropdownStyle>
       

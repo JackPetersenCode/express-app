@@ -4,28 +4,31 @@ import { Link } from "react-router-dom";
 import { Navigate, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Navbar from "../pages/NavBar";
+import Footer from "./Footer.js";
 
 const BusinessesBackground = styled.div`
     background-image: linear-gradient(180deg, black, white);
     width: 100%;
+    min-height: 100vh;
 `
 const FormDiv = styled.div`
     text-align: center;
     margin: 20px;
 `
 const Flower = styled.img`
-    width: 75px;
-    height: 75px;
+    width: 29px;
+    height: 31px;
 `
 const StyledInput = styled.input`
-    width: 400px;
+    width: 80vw;
+    height: auto;
+    max-width: 500px;
     padding: 15px;
     font-size: large;
     border-radius: 10px;
     border-width: 5px;
 `
 const StyledButton = styled.button`
-    width: 440px;
     padding: 15px;
     font-size: large;
     border-radius: 10px;
@@ -35,7 +38,6 @@ const StyledButton = styled.button`
     background-color: rgb(48, 48, 48);
 `
 const StyledButtonRegister = styled.button`
-    width: 440px;
     padding: 15px;
     font-size: large;
     border-radius: 10px;
@@ -43,7 +45,10 @@ const StyledButtonRegister = styled.button`
     border-width: 5px;
     border-color: rgb(48, 48, 48);
     background-color: rgb(48, 48, 48);
-
+`
+const FooterDiv = styled.div`
+    width: 100%;
+    
 `
 
 const Login = ({ profile, setProfile }) => {
@@ -73,31 +78,36 @@ const Login = ({ profile, setProfile }) => {
     }
 
     return (
-        <BusinessesBackground>
-            <Navbar />
-            <FormDiv>
-                <Flower src="/flower2.png" />
-            </FormDiv>
-            <FormDiv>
-                <StyledInput value={email} onChange={(e) => setEmail(e.target.value)}
-                        type="email" placeholder="Email" id="email" name="email" />
-            </FormDiv>
-            <FormDiv>
-                <StyledInput value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" id="password" name="password" />
-            </FormDiv>
-            <FormDiv>
-                <StyledButton onClick={login}>Log in</StyledButton>        
-            </FormDiv>
-            <FormDiv>
-                <Link to="/Register">
-                    <StyledButtonRegister>Don't have an account? Register here.</StyledButtonRegister>
-                </Link>
-            </FormDiv>
-            <FormDiv>{messages.map((message, index) => (
-                    <div key={index}>{message.message}</div>
-                ))}
-            </FormDiv>
-        </BusinessesBackground>
+        <>
+            <BusinessesBackground>
+                <Navbar />
+                <FormDiv>
+                    <Flower src="/newLogo.png" />
+                </FormDiv>
+                <FormDiv>
+                    <StyledInput value={email} onChange={(e) => setEmail(e.target.value)}
+                            type="email" placeholder="Email" id="email" name="email" />
+                </FormDiv>
+                <FormDiv>
+                    <StyledInput value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" id="password" name="password" />
+                </FormDiv>
+                <FormDiv>
+                    <StyledButton onClick={login}>Log in</StyledButton>        
+                </FormDiv>
+                <FormDiv>
+                    <Link to="/Register">
+                        <StyledButtonRegister>Don't have an account? Register here.</StyledButtonRegister>
+                    </Link>
+                </FormDiv>
+                <FormDiv>{messages.map((message, index) => (
+                        <div key={index}>{message.message}</div>
+                    ))}
+                </FormDiv>
+            </BusinessesBackground>
+            <FooterDiv>
+                <Footer styleProps={true} />
+            </FooterDiv>
+        </>
     )
 }
 
