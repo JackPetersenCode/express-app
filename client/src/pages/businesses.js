@@ -54,7 +54,7 @@ const BusinessDescription = styled.div`
 `
 
 const WrapperDiv = styled.div`
-    
+    position: relative;
 `
 const BusinessNameWrapper = styled.div`
     display: flex;
@@ -66,7 +66,7 @@ const BusinessNameWrapper = styled.div`
     text-align: center;
     z-index: 10;
     @media screen and (max-width: 768px) {
-        top: 42%;
+        top: 35%;
     }
 `
 const RatingContainerDiv = styled.div`
