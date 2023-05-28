@@ -6,13 +6,30 @@ import "../App.css";
 import styled from 'styled-components';
 import { Link, useNavigate } from "react-router-dom";
 import SearchList from './SearchList';
+import { createTheme, rgbToHex, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  
+  status: {
+    danger: '#e53e3e',
+  },
+  palette: {
+    primary: {
+      main: 'rgb(0,0,0)',
+      darker: '#053e85',
+    },
+    neutral: {
+      main: '#64748B',
+      contrastText: '#fff',
+    },
+  },
+});
 
 const ContainerDiv = styled.div`
     position: relative;
 `
 
 const TextDiv = styled.div`
-    padding-top: 20px;
 `
 const DropdownStyle = styled.div`
     position: absolute;
@@ -45,19 +62,21 @@ const SearchBar = ({ allBusinesses, inputText, setInputText, selectedBusiness, s
     return (
       <ContainerDiv ref={refTwo} >
         <TextDiv>
-          <TextField 
-            fullWidth
-            id="outlined-basic"
-            onChange={inputHandler}
-            variant="outlined"
-            label="Search"
-            style={{backgroundColor: 'white', borderRadius: '5px'}}
-            value={inputText}
-            InputProps={{
-                endAdornment: <InputAdornment position="start"><Link to={`/${inputText}`}><SearchIcon /></Link></InputAdornment>,
-            }}
-            onKeyDown={reviewsList ? handleEnterReviews : handleEnter}
-          />
+          <ThemeProvider theme={theme}>
+            <TextField 
+              fullWidth
+              id="outlined-basic"
+              onChange={inputHandler}
+              variant="outlined"
+              placeholder="restaurants, landscapers, all"
+              style={{backgroundColor: 'white', borderRadius: '5px'}}
+              value={inputText}
+              InputProps={{
+                  endAdornment: <InputAdornment position="start"><Link to={`/${inputText}`}><SearchIcon /></Link></InputAdornment>,
+              }}
+              onKeyDown={reviewsList ? handleEnterReviews : handleEnter}
+            />
+          </ThemeProvider>
         </TextDiv>
         {reviewsList ?
         <DropdownStyle>

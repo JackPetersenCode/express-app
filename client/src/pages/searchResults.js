@@ -9,30 +9,29 @@ import kudos from "../apis/kudos";
 const TextContainerDiv = styled.div`
     text-align: left;
     padding-left: 20px;
+    width: 100%;
+    @media screen and (max-width: 768px) {
+        padding-left: 0px;
+    }
 `
 
 const ReviewsDiv = styled.div`
     font-size: medium;
-    max-width: 300px;
 `
 
 const NameDiv = styled.div`
-    font-size: x-large;
+    font-size: xx-large;
     font-weight: 500;
     padding: 10px;
     `
 
 const ResultsHeader = styled.h2`
-    padding-left: max(50px, 5%);
     text-align: left;
-    min-width: 400px;
     color: rgb(182, 182, 182);
 `
 
 const SearchResultsImage = styled.img`
-    display: grid;
-    place-items: left;
-    max-width: 350px;
+    max-width: 100%;
     max-height: 100%;
     border-radius: 5px;
 `
@@ -55,29 +54,31 @@ const KudosDiv = styled.div`
 `
 
 const SearchResultsDiv = styled.div`
-    display: grid;
-    grid-template-columns: 400px minmax(400px, 1fr);
-    grid-template-rows: auto;
-    max-width: fit-content;
+    display: flex;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 0, 0, 0.2),
         0 0 10px rgba(0, 0, 0, 0.2);
     padding: 25px;
-    margin-left: 50px;
     background-color: white;
     border-radius: 5px;
     margin-bottom: 25px;
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+    }
 `
 
 const SearchResultsBackground = styled.div`
     background-image: linear-gradient(180deg, black, white);
-    width: 100%;
 `
 
 const RatingContainerDiv = styled.div`
     display: flex;
-    alignItems: center;
-    flexWrap: wrap;
-    max-height: 50px;
+`
+const ImageContainer = styled.div`
+    width: 100%;
+`
+const SearchResultsContainer = styled.div`
+    margin-left: 5%;
+    margin-right: 5%;
 `
 
 const SearchResults = () => {
@@ -97,7 +98,13 @@ const SearchResults = () => {
 
     useEffect(() => {
         const getAll = async() => {
-            let results = await kudos.get(`/api/business/getAllLike/${input.toLowerCase()}`);
+            let results;
+            if (input.toLowerCase() === 'all') {
+                console.log('here')
+                results = await kudos.get(`/api/reviews/topRated`);
+            } else {
+                results = await kudos.get(`/api/business/getAllLike/${input.toLowerCase()}`);
+            }
             setData(results.data);
         }
         getAll();
@@ -117,33 +124,37 @@ const SearchResults = () => {
     return (
         <SearchResultsBackground>
             <Navbar />
-            <ResultsHeader>{`All "${input}" results`}</ResultsHeader>
-            {data.map((element, index) => (
-                <SearchResultsDiv key={index}>
-                    {element.images ?
-                    <SearchResultsImage src={element.images[0]}/>
-                    :
-                    'No Images'}
-                    <TextContainerDiv>
-                        <NameDiv>
-                            {element.name}
-                        </NameDiv>
-                        <RatingContainerDiv>
-                            <FlowerDiv>
-                                <FlowerImage src={'./flower.png'}/>
-                            </FlowerDiv>
-                            <KudosDiv>
-                                <KudosRating name={element.name} />
-                            </KudosDiv>
-                        </RatingContainerDiv>
-                        <ReviewsDiv>
-                            <Reviews name={element.name} limitTwo={true} />
-                        </ReviewsDiv>
-                        <Link to={`/Businesses/${element.name}`}>More</Link>
-                    </TextContainerDiv>
+            <SearchResultsContainer>
+                <ResultsHeader>{`All "${input}" results`}</ResultsHeader>
+                {data.map((element, index) => (
+                    <SearchResultsDiv key={index}>
+                        {element.images ?
+                        <ImageContainer>
+                            <SearchResultsImage src={element.name !== "Jack's Pizza Shack" ? element.images[0] : element.images[1]}/>
+                        </ImageContainer>
+                        :
+                        'No Images'}
+                        <TextContainerDiv>
+                            <NameDiv>
+                                {element.name}
+                            </NameDiv>
+                            <RatingContainerDiv>
+                                <FlowerDiv>
+                                    <FlowerImage src={'./flower.png'}/>
+                                </FlowerDiv>
+                                <KudosDiv>
+                                    <KudosRating name={element.name} />
+                                </KudosDiv>
+                            </RatingContainerDiv>
+                            <ReviewsDiv>
+                                <Reviews name={element.name} limitTwo={true} />
+                            </ReviewsDiv>
+                            <Link to={`/Businesses/${element.name}`}>More</Link>
+                        </TextContainerDiv>
 
-                </SearchResultsDiv>
-            ))}
+                    </SearchResultsDiv>
+                ))}
+            </SearchResultsContainer>
         </SearchResultsBackground>
     )
 }

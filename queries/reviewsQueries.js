@@ -1,5 +1,22 @@
 const db = require("../pgpool");
 
+
+const getTopRated = (request, response, next) => {
+    console.log('yoyo')
+    db.query(`SELECT businesses.name, businesses.images, businesses.tags, COUNT(*) AS count
+                FROM businesses
+                LEFT JOIN reviews
+                ON businesses.name = reviews.name
+                GROUP BY businesses.name, businesses.images, businesses.tags
+                ORDER BY COUNT(*) desc`, (error, results) => {
+        if (error) {
+            console.log(error);
+        }
+        response.status(200).json(results.rows)
+    })
+}
+
+
 const getReviews = (request, response, next) => {
 
     const { name } = request.params;
@@ -41,4 +58,5 @@ module.exports = {
     getReviews,
     getCount,
     createReview,
+    getTopRated,
 }

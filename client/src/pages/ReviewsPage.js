@@ -4,6 +4,7 @@ import Navbar from "./NavBar";
 import SearchBar from "../components/SearchBar";
 import SearchList from "../components/SearchList";
 import kudos from "../apis/kudos";
+import Chat from "../components/ChatAi";
 
 const Flower = styled.img`
     width: 75px;
@@ -138,6 +139,7 @@ const ReviewsPage = ({ profile }) => {
                     }
                 </ReviewsDiv>
             </CenterDiv>
+            <Chat />
         </BusinessesBackground>
     )
 }

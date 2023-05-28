@@ -3,11 +3,17 @@ import styled from "styled-components";
 import kudos from "../apis/kudos.js";
 
 const StyledRating = styled.span`
-    margin-left: 60px;
+    margin-left: 40px;
     color: rgba(85,163,1);
-    
+    `
+const KudosFlex = styled.div`
+    display: flex;
+    align-items: center;
 
     `
+const ReviewsDiv = styled.div`
+    white-space: nowrap;
+`
 
 const KudosRating = ({ name }) => {
 
@@ -41,14 +47,14 @@ const KudosRating = ({ name }) => {
     }, [count])
 
     return (
-        <>
-        <span data-testid={"review-count"}>
-            {`${count} reviews`}
-        </span>
-        <StyledRating>
-            {rating}
-        </StyledRating>
-        </>
+        <KudosFlex>
+          <ReviewsDiv data-testid={"review-count"}>
+              {`${count} reviews`}
+          </ReviewsDiv>
+          <StyledRating>
+              {rating}
+          </StyledRating>
+        </KudosFlex>
     )
 }
 

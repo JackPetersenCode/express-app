@@ -18,57 +18,49 @@ const BusinessImage = styled.img`
     min-height: 300px;
     height: 100%;
     object-fit: cover;
-    @media screen and (max-width: 768px) {
-        min-height: 200px;
-    }
+
 `
 const ImageDiv = styled.div`
     display: flex;
-    max-height: 300px;
-    position: relative;
-    @media screen and (max-width: 768px) {
-        max-height: 200px;
-    }
+    box-shadow: 0 0 20px rgba(48, 48, 48), 0 0 20px rgba(48, 48, 48),
+    0 0 20px rgba(48, 48, 48);   
 `
 const BusinessName = styled.div`
     color: white;
-    font-size: 7vh;
+    font-size: xxx-large;
     font-weight: 700;
     text-shadow: 0 0 0.1em black, 0 0 0.1em black,
     0 0 0.1em black;
-    white-space: nowrap;
+    white-space: nowrap
 `
 const BusinessDescription = styled.div`
-    
     box-shadow: 0 0 10px rgba(48, 48, 48), 0 0 10px rgba(48, 48, 48),
     0 0 10px rgba(48, 48, 48);
     border-radius: 5px;
     background-color: white;
-    margin-bottom: 20px;
-    `
+`
 const WrapperDiv = styled.div`
     
 `
 const BusinessNameWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 37%;
     text-align: center;
     z-index: 10;
-    @media screen and (max-width: 768px) {
-        top: 45%;
-    }
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    padding-left: max(200px, 30%);
+    padding-top: 100px;
 `
 const RatingContainerDiv = styled.div`
     display: flex;
     align-items: center;
-    justify-content: center;
+    flex-wrap: wrap;    
+    
 `
 
 const FlowerDiv = styled.div`
+    display: flex;
+    place-items: center;
 `
 
 const FlowerImage = styled.img`
@@ -76,6 +68,7 @@ const FlowerImage = styled.img`
 `
 
 const KudosDiv = styled.div`
+    display: flex;
     font-size: x-large;
     text-shadow: 0 0 10px black, 0 0 10px black,
     0 0 10px black;
@@ -83,52 +76,38 @@ const KudosDiv = styled.div`
     color: white;
 `
 const BottomPageWrapper = styled.div`
-    padding: 20px;
-    @media screen and (min-width: 769px) {
-        width: 100%;
-    }
+    padding: 50px;
 `
 const BottomDiv = styled.div`
     display: flex;
-    @media screen and (max-width: 768px) {
-        flex-direction: column;
-    }
 `
 const MapWrap = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+    margin-top: 320px;    
 `
 const BelowMapDiv = styled.div`
     margin-top: 520px;
-    @media screen and (max-width: 768px) {
-        margin-left: 5%;
-    }
 `
 const ReviewsWrapper = styled.div`
     background-color: white;
     box-shadow: 0 0 10px rgba(48, 48, 48), 0 0 10px rgba(48, 48, 48),
     0 0 10px rgba(48, 48, 48);
     border-radius: 5px;
+    margin-top: 20px;
 `
-const FromTheBusiness = styled.div`
-    font-size: x-large;
+const FromTheBusiness = styled.h2`
+    padding-top: 10px;
     text-align: center;
-    font-weight: 700;
-
 `
 const Description = styled.div`
     padding: 10px;
 `
 const InnerImageDiv = styled.div`
-
 `
-const AddressDiv = styled.div`
-    font-size: large;
-    font-weight: 700;
-`
+const bannerStyle = (image) => ({
+    flex: image,
+})
 
-const Businesses = () => {
+const ImagePractice = () => {
 
     const { name } = useParams();
 
@@ -164,11 +143,8 @@ const Businesses = () => {
     }, [business])
 */
     return (
-        <>
-        {business.name ?
-        <BusinessesBackground>
-            <NavBar />
-            <WrapperDiv>
+            <>
+                {business.images ?
                 <ImageDiv>
                     {business.images.map((image, index) => (
                         <InnerImageDiv key={index}>
@@ -176,47 +152,11 @@ const Businesses = () => {
                         </InnerImageDiv>
                     ))}
                 </ImageDiv>
-                <BusinessNameWrapper>
-                    <BusinessName>
-                        {business.name}
-                    </BusinessName>
-                    <RatingContainerDiv>
-                        <FlowerDiv>
-                            <FlowerImage src={'/flower2.png'}/>
-                        </FlowerDiv>
-                        <KudosDiv>
-                            <KudosRating name={business.name} />
-                        </KudosDiv>
-                    </RatingContainerDiv>
-                </BusinessNameWrapper>
-            </WrapperDiv>
-            <BottomDiv>
-                <BottomPageWrapper>
-                    <BusinessDescription>
-                        <FromTheBusiness>About the Business</FromTheBusiness>
-                        <Description>
-                            {business.description}
-                        </Description>
-                    </BusinessDescription>
-                    <ReviewsWrapper>
-                        <FromTheBusiness>Review Highlights</FromTheBusiness>
-                        <Reviews name={business.name} />
-                    </ReviewsWrapper>
-                </BottomPageWrapper>
-                <MapWrap>
+                :
+                ""}
+            </>
 
-                    <GoogleMap address={business.address} />
-
-                    <BelowMapDiv>
-                        <AddressDiv>Business address:</AddressDiv>
-                        {business.address}
-                    </BelowMapDiv>
-                </MapWrap>
-            </BottomDiv>
-        </BusinessesBackground>
-        : ''}
-        </>
     )
 }
 
-export default Businesses;
+export default ImagePractice;

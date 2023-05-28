@@ -8,6 +8,10 @@ import { Slide, Fade } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
 import '../App.css'
 import FadeButton from "../components/FadeButton";
+import kudos from "../apis/kudos";
+import Slideshow from "../components/Slideshow";
+import MediaQuery from 'react-responsive';
+
 
 
 const images = [
@@ -27,29 +31,36 @@ const TextDiv = styled.div`
     text-shadow: 0 0 0.2em #87F, 0 0 0.2em black,
         0 0 0.2em black; 
 `
+const SlideshowContainer = styled.div`
+  width: 100%;
+  height: auto;
+`
 
 const Home = () => {
     
+    const [allBusinesses, setAllBusinesses] = useState([]);
+
+    useEffect(() => {
+
+        const getAllBusinesses = async() => {
+            try {
+                let results = await kudos.get('/api/reviews/topRated'); 
+                console.log(results.data);
+                setAllBusinesses(results.data);             
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getAllBusinesses();
+    }, [])
+
     return (
-      <div>
-        <Fade autoplay infinite duration={5000}>
-          {images.map((fadeImage, index) => (
-            <div key={index}>
-              <div style={{ height: '100vh',
-                            backgroundImage: `url(${fadeImage.url})`,
-                            width: '100%',
-                            backgroundRepeat: 'no-repeat',
-                            backgroundPosition: 'center',
-                            backgroundSize: 'cover'
-                            }}>
-                <Navbar />
-                <TextDiv>{fadeImage.text}</TextDiv>
-                <FadeButton name={fadeImage.name} />
-              </div>
-            </div>
-          ))}
-        </Fade>
-      </div>
+      <>
+        <MediaQuery maxWidth={768}>
+          <Navbar />
+        </MediaQuery>
+        <Slideshow />
+      </>
     )
 }
 
