@@ -160,8 +160,6 @@ const ReviewsPage = ({ profile }) => {
         <FooterDiv>
             <Footer styleProps={true} />
         </FooterDiv>
-
-        <Chat />
         </>
     )
 }
