@@ -61,9 +61,7 @@ const Home = () => {
         <MediaQuery maxWidth={768}>
           <Navbar />
         </MediaQuery>
-        <Slideshow />
-        <Counter />
-        
+        <Slideshow />        
 
       </>
     )
