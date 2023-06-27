@@ -8,6 +8,7 @@ function ChatInterface() {
   ]);
 
   const generateResponse = async (input) => {
+    console.log(input)
     const response = await openai.completions.create({
       engine: 'text-davinci-002', // Replace with your preferred engine
       prompt: input,
@@ -20,6 +21,7 @@ function ChatInterface() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log(inputValue);
     if (!inputValue.trim()) {
       return;
     }

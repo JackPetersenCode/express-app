@@ -12,6 +12,7 @@ import kudos from "../apis/kudos";
 import Slideshow from "../components/Slideshow";
 import MediaQuery from 'react-responsive';
 import Footer from "../components/Footer";
+import Counter from "../features/counter/Counter";
 
 
 
@@ -61,6 +62,7 @@ const Home = () => {
           <Navbar />
         </MediaQuery>
         <Slideshow />
+        <Counter />
         
 
       </>

@@ -10,6 +10,12 @@ const getAll = (request, response, next) => {
     })
 }
 
+/*
+create or replace function reverse_like (text, text) returns boolean language sql as
+ $$ select $2 like $1 $$ immutable parallel safe;
+ create operator <~~ ( function =reverse_like, leftarg = text, rightarg=text );
+*/
+
 const getAllLike = (request, response, next) => {
 
     let { input } = request.params;

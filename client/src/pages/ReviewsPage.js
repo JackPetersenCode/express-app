@@ -107,18 +107,25 @@ const ReviewsPage = ({ profile }) => {
 
     const postReview = async() => {
         let reviewer;
-        if (profile.name) {
-            reviewer = profile.name;            
+        let results = await kudos.post(`/api/ask`, {prompt: `Does the following review have a positive or negative connotation? ${review}. Respond with 0 for negative and 1 for positive.`})  
+        console.log(results.data);
+        if (results.data.message.includes("0")) {
+            alert("Momma always says, \"If you don't have anything nice to say, don't say anything at all.\"");
+            return;
         } else {
-            reviewer = 'Not Signed In'
-        }
-        try {
-            let results = await kudos.post(`/api/reviews`, {name: selectedBusiness, review: review, reviewer: reviewer});
-            if (results.data) {
-                alert('Review Posted!')
+            if (profile.name) {
+                reviewer = profile.name;            
+            } else {
+                reviewer = 'Not Signed In'
             }
-        } catch (error) {
-            console.log(error)
+            try {
+                let results = await kudos.post(`/api/reviews`, {name: selectedBusiness, review: review, reviewer: reviewer});
+                if (results.data) {
+                    alert('Review Posted!')
+                }
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 
@@ -153,6 +160,8 @@ const ReviewsPage = ({ profile }) => {
         <FooterDiv>
             <Footer styleProps={true} />
         </FooterDiv>
+
+        <Chat />
         </>
     )
 }

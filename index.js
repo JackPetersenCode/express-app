@@ -67,7 +67,9 @@ const restaurantRouter = require('./routes/restaurantRoutes.js');
 const reviewsRouter = require('./routes/reviewsRoutes.js');
 const userRouter = require('./routes/userRoutes.js');
 const businessRouter = require('./routes/businessRoutes.js');
+const chatRouter = require('./routes/chatRoutes.js');
 
+apiRouter.use('/ask', chatRouter);
 apiRouter.use('/restaurants', restaurantRouter);
 apiRouter.use('/reviews', reviewsRouter);
 apiRouter.use('/users', userRouter);
