@@ -1,6 +1,12 @@
 const db = require("../pgpool");
 
 
+const sugar = (request, response, next) => {
+    
+    response.status(200).json('sugar');
+}
+
+
 const getAll = (request, response, next) => {
     db.query(`SELECT * FROM "businesses"`, (error, results) => {
         if (error) {
@@ -94,4 +100,5 @@ module.exports = {
     getByEmail,
     createBusiness,
     createImages,
+    sugar,
 }

@@ -3,6 +3,8 @@ const router = express.Router();
 const businessQueries = require('../queries/businessQueries.js');
 const {uploadImage, upload} = require('../queries/upload.js')
 
+router.get('/sugar', businessQueries.sugar)
+
 router.get('/searchAll', businessQueries.getAll);
 
 router.get('/getAllLike/:input', businessQueries.getAllLike);

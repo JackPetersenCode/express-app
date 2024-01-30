@@ -18,7 +18,7 @@ const askPrompt = async (req, res) => {
       }
   
       const response = await openai.createCompletion({
-        model: "text-davinci-003",
+        model: "gpt-3.5-turbo-instruct",
         prompt,
         max_tokens: 64,
       });
@@ -29,7 +29,7 @@ const askPrompt = async (req, res) => {
         message: completion,
       });
     } catch (error) {
-      console.log(error.message);
+      throw error;
     }
 };
 
